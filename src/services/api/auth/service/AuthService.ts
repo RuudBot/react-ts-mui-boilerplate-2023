@@ -1,6 +1,6 @@
-import {AuthResponse, LoginData} from "../model/authModel";
-import {apiService} from "../../apiGeneric/service/apiService";
-import {TokenService} from "./tokenService";
+import {AuthResponse, LoginData} from "../model/AuthModel";
+import {apiService} from "../../apiGeneric/service/ApiService";
+import {TokenService} from "./TokenService";
 
 export const AuthService = {
     async login(data: LoginData): Promise<string> {

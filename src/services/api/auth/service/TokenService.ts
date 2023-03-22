@@ -1,4 +1,3 @@
-// src/features/login/services/TokenService.ts
 export const TokenService = {
     setToken(token: string): void {
         localStorage.setItem('token', token);

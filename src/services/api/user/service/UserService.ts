@@ -1,11 +1,11 @@
-import {UserModel} from "../../user/model/userModel";
-import {apiService, ApiService} from "../../apiGeneric/service/apiService";
+import {UserModel} from "../model/UserModel";
+import {ApiService} from "../../apiGeneric/service/ApiService";
 
 class UserService {
     private apiService: ApiService;
 
     constructor() {
-        this.apiService = apiService;
+        this.apiService = new ApiService();
     }
 
     public async getUsers(): Promise<UserModel[]> {

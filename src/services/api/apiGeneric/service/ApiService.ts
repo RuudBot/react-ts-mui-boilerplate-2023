@@ -1,6 +1,6 @@
 // src/api/ApiService.ts
-import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
-import {TokenService} from "../../auth/service/tokenService";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import {TokenService} from "../../auth/service/TokenService";
 
 export class ApiService {
     private instance: AxiosInstance;
@@ -15,7 +15,7 @@ export class ApiService {
         this.instance.interceptors.response.use(this.responseInterceptor, this.errorInterceptor);
     }
 
-    private requestInterceptor = (config:  InternalAxiosRequestConfig):  InternalAxiosRequestConfig => {
+    private requestInterceptor = (config:  AxiosRequestConfig):  AxiosRequestConfig => {
         const token = TokenService.getToken();
         if (token) {
             config.headers = config.headers || {}; // Set a default value for headers if it's undefined
@@ -33,11 +33,11 @@ export class ApiService {
         return Promise.reject(error);
     };
 
-    public get = <T = any>(url: string, config?:  InternalAxiosRequestConfig) => this.instance.get<T>(url, config);
-    public post = <T = any>(url: string, data?: any, config?:  InternalAxiosRequestConfig) => this.instance.post<T>(url, data, config);
-    public put = <T = any>(url: string, data?: any, config?:  InternalAxiosRequestConfig) => this.instance.put<T>(url, data, config);
-    public patch = <T = any>(url: string, data?: any, config?:  InternalAxiosRequestConfig) => this.instance.patch<T>(url, data, config);
-    public delete = <T = any>(url: string, config?:  InternalAxiosRequestConfig) => this.instance.delete<T>(url, config);
+    public get = <T = any>(url: string, config?:  AxiosRequestConfig) => this.instance.get<T>(url, config);
+    public post = <T = any>(url: string, data?: any, config?:  AxiosRequestConfig) => this.instance.post<T>(url, data, config);
+    public put = <T = any>(url: string, data?: any, config?:  AxiosRequestConfig) => this.instance.put<T>(url, data, config);
+    public patch = <T = any>(url: string, data?: any, config?:  AxiosRequestConfig) => this.instance.patch<T>(url, data, config);
+    public delete = <T = any>(url: string, config?:  AxiosRequestConfig) => this.instance.delete<T>(url, config);
 }
 
 export const apiService = new ApiService();
